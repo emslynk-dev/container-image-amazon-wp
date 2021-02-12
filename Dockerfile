@@ -15,6 +15,7 @@ COPY ["uploads.ini","/etc/php.d/"]
 # Install elasticache PHP extension
 COPY ["amazon-elasticache-cluster-client.so","/etc/php.d/"]
 # Prepare WordPress Themes and Plugins folders for efs
+RUN ["mkdir","/var/www/html/wp-content"]
 RUN ["mkdir","/var/www/html/wp-content/themes"]
 RUN ["mkdir","/var/www/html/wp-content/plugins"]
 # Start Apache

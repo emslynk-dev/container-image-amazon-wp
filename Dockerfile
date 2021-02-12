@@ -5,11 +5,11 @@ FROM amazonlinux:${VERSION}
 # Enable PHP 7.3 Repo
 RUN ["amazon-linux-extras","enable","php7.3"]
 # Clean Repo Metadata
-RUN ["yum","clean","metadata"]
+RUN ["yum","-y","clean","metadata"]
 # Install PHP 7.3
-RUN ["yum","install","php","php-{pear,cgi,devel,json,mysqlnd,pdo,fpm,mbstring,pecl-imagick,pecl-redis,pecl-zip}"]
+RUN ["yum","-y","install","php","php-{pear,cgi,devel,json,mysqlnd,pdo,fpm,mbstring,pecl-imagick,pecl-redis,pecl-zip}"]
 # Install httpd
-RUN ["yum","install","httpd"]
+RUN ["yum","-y","install","httpd"]
 # PHP increase upload size limits
 COPY ["uploads.ini","/etc/php.d/"]
 # Install elasticache PHP extension

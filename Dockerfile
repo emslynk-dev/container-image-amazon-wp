@@ -20,5 +20,5 @@ RUN ["mkdir","/var/www/html/wp-content/themes"]
 RUN ["mkdir","/var/www/html/wp-content/plugins"]
 COPY ["index.html","/var/www/html/"]
 # Start Apache
-ENTRYPOINT ["/usr/sbin/httpd","-D",'FOREGROUND']
+ENTRYPOINT ["/usr/sbin/httpd","-D","FOREGROUND"]
 # 503147990211.dkr.ecr.us-east-1.amazonaws.com/emslynk-dev-docker-imgs

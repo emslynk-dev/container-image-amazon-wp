@@ -6,10 +6,8 @@ FROM amazonlinux:${VERSION}
 RUN ["amazon-linux-extras","enable","php7.3"]
 # Clean Repo Metadata
 RUN ["yum","-y","clean","metadata"]
-# Install PHP 7.3
+# Install PHP 7.3 and httpd
 RUN ["yum","-y","install","php","php-{pear,cgi,devel,json,mysqlnd,pdo,fpm,mbstring,pecl-imagick,pecl-redis,pecl-zip}"]
-# Install httpd
-RUN ["yum","-y","install","httpd"]
 # PHP increase upload size limits
 COPY ["uploads.ini","/etc/php.d/"]
 # Install elasticache PHP extension
@@ -18,7 +16,6 @@ COPY ["amazon-elasticache-cluster-client.so","/etc/php.d/"]
 RUN ["mkdir","/var/www/html/wp-content"]
 RUN ["mkdir","/var/www/html/wp-content/themes"]
 RUN ["mkdir","/var/www/html/wp-content/plugins"]
-COPY ["index.html","/var/www/html/"]
 # Start Apache
 RUN echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf
 ENTRYPOINT ["/usr/sbin/httpd","-D","FOREGROUND"]
